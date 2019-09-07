@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>Viewing Entry {{ lesson_index|add:1 }} of {{ total_entries }}</h1>
+        {% include 'flash_cards/entry.html' %}
+    </div>
+{% endblock %}

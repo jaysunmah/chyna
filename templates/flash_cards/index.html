@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Hello, this is the flash cards home page.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-primary" href="{% url 'create_lesson' %}">create new lesson</a>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Lesson history</h3>
+            </div>
+            {% for lesson_stats in lesson_history %}
+                <div class="col-sm-3">
+                    <div class="card" style="width: 100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Lesson {{ lesson_stats.lesson.pk }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ lesson_stats.lesson.created_at }}</h6>
+                            <p class="card-text">
+                                Approx. lesson accuracy: {{ lesson_stats.lesson_accuracy }}%
+                            </p>
+                            <a href="#" class="card-link">View lesson</a>
+                            <a href="#" class="card-link">Retake</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Entry Stats:</h3>
+            </div>
+        </div>
+        <div>
+            <div>t0: <a href="{% url 'view_entry_tier' tier=0 %}">{{ entry_stats.tier_0 }}</a></div>
+            <div>t1: <a href="{% url 'view_entry_tier' tier=1 %}">{{ entry_stats.tier_1 }}</a></div>
+            <div>t2: <a href="{% url 'view_entry_tier' tier=2 %}">{{ entry_stats.tier_2 }}</a></div>
+            <div>t3: <a href="{% url 'view_entry_tier' tier=3 %}">{{ entry_stats.tier_3 }}</a></div>
+        </div>
+
+    </div>
+{% endblock %}
